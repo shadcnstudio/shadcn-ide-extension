@@ -154,6 +154,16 @@ export const getImageForSection = (sectionId: string): string => {
       'https://cdn.shadcnstudio.com/ss-assets/ide-extension/marketing-ui/timeline-component/timeline-component-02.png?format=auto',
     'card-nav':
       'https://cdn.shadcnstudio.com/ss-assets/ide-extension/dashboard-and-application/card-nav/card-nav-01.png?format=auto',
+    'gift-card':
+      'https://cdn.shadcnstudio.com/ss-assets/ide-extension/ecommerce/gift-card/gift-card-01.png?format=auto',
+    'form-layout':
+      'https://cdn.shadcnstudio.com/ss-assets/ide-extension/dashboard-and-application/form-layout/form-layout-05.png?format=auto',
+    'account-settings':
+      'https://cdn.shadcnstudio.com/ss-assets/ide-extension/dashboard-and-application/account-settings/account-settings-02.png?format=auto',
+    'announcement-banner':
+      'https://cdn.shadcnstudio.com/ss-assets/ide-extension/ecommerce/announcement-banner/announcement-banner-01.png?format=auto',
+    'user-schedule':
+      'https://cdn.shadcnstudio.com/ss-assets/ide-extension/marketing-ui/user-schedule/user-schedule-01.png?format=auto',
   };
   return sectionImages[sectionId] || '';
 };
