@@ -3,6 +3,7 @@ import * as vscode from 'vscode';
 import {
   getItemsBySection,
   getSections,
+  initSectionImages,
   type Item,
 } from './utils/section-utils';
 
@@ -445,6 +446,9 @@ export class ShadcnBlocksProvider implements vscode.WebviewViewProvider {
           loading: true,
         });
       }
+
+      // Ensure section images are loaded from the remote JSON (cached after first call)
+      await initSectionImages();
 
       const registryBlocksUrl =
         'https://shadcnstudio.com/r/blocks/registry.json?is_extension=true';
