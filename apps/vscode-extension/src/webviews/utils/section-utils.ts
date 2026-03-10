@@ -41,7 +41,7 @@ export interface groupedItem {
 }
 
 const SECTION_IMAGES_URL =
-  'https://cdn.allframer.club/af-assets/hero-slider/sectiondetails.json';
+  'https://cdn.shadcnstudio.com/ss-assets/ide-extension/static-files/section-data.json';
 
 let sectionImagesCache: { [key: string]: string } = {};
 
