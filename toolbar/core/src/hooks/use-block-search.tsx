@@ -81,7 +81,7 @@ const fetchBlocksFromAPI = async (
   email?: string,
 ) => {
   const fetchBlocksUrl =
-    'https://shadcnstudio.com/r/blocks/registry.json?is_extension=true';
+    'https://shadcnstudio.com/r/blocks/radix-vega/registry.json?is_extension=true';
 
   try {
     const response = await fetch(fetchBlocksUrl, { method: 'GET' });

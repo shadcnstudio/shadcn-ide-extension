@@ -451,7 +451,7 @@ export class ShadcnBlocksProvider implements vscode.WebviewViewProvider {
       await initSectionImages();
 
       const registryBlocksUrl =
-        'https://shadcnstudio.com/r/blocks/registry.json?is_extension=true';
+        'https://shadcnstudio.com/r/blocks/radix-vega/registry.json?is_extension=true';
       // Fetch shadcn blocks from the shadcn studio registry
       const response = await fetch(registryBlocksUrl, {
         method: 'GET',
@@ -534,7 +534,7 @@ export class ShadcnBlocksProvider implements vscode.WebviewViewProvider {
 
       // Fetch section details from shadcn API or registry
       const registryBlocksUrl =
-        'https://shadcnstudio.com/r/blocks/registry.json?is_extension=true';
+        'https://shadcnstudio.com/r/blocks/radix-vega/registry.json?is_extension=true';
 
       // Fetch shadcn blocks from the shadcn studio registry
       const response = await fetch(registryBlocksUrl, {

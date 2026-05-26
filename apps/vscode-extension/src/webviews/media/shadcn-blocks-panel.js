@@ -497,7 +497,7 @@ function renderSectionDetailsFiltered() {
               <span class="block-item-name">${searchQuery ? highlightMatches(item.meta?.title || 'Unknown Block', searchQuery) : escapeHtml(item.meta?.title || 'Unknown Block')}</span>
             </div>
             <div class="block-item-actions">
-              <button class="icon-btn preview-btn" onclick="openExternalUrl('https://shadcnstudio.com/preview/${item.meta?.category || ''}/${item.meta?.section || ''}/${item.name}')" title="Preview block">
+              <button class="icon-btn preview-btn" onclick="openExternalUrl('https://shadcnstudio.com/preview/blocks/radix/${item.meta?.category || ''}/${item.meta?.section || ''}/${item.name}')" title="Preview block">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="14" height="14">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
                   <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
@@ -605,7 +605,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const command =
           CLIVersion === 'cli-v3'
             ? `npx shadcn@latest add @ss-blocks/${itemName}`
-            : `npx shadcn@latest add "https://shadcnstudio.com/r/blocks/${itemName}.json`;
+            : `npx shadcn@latest add "https://shadcnstudio.com/r/blocks/new-york-v4/${itemName}.json`;
         copyInstallationCmd(command, CLIVersion);
       }
     }
@@ -637,7 +637,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const command =
           CLIVersion === 'cli-v3'
             ? `npx shadcn@latest add @ss-blocks/${itemName}`
-            : `npx shadcn@latest add "https://shadcnstudio.com/r/blocks/${itemName}.json`;
+            : `npx shadcn@latest add "https://shadcnstudio.com/r/blocks/new-york-v4/${itemName}.json`;
         installCmd(command, CLIVersion);
       }
     }

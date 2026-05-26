@@ -506,8 +506,8 @@ export const getSelectedBlockInfo = (
     cliVersion === 'v3'
       ? `npx shadcn@latest add @ss-blocks/${block.name}`
       : email && licenseKey
-        ? `npx shadcn@latest add "https://shadcnstudio.com/r/blocks/${block.name}.json?email=${email}&license_key=${licenseKey}"`
-        : `npx shadcn@latest add "https://shadcnstudio.com/r/blocks/${block.name}.json"`;
+        ? `npx shadcn@latest add "https://shadcnstudio.com/r/blocks/new-york-v4/${block.name}.json?email=${email}&license_key=${licenseKey}"`
+        : `npx shadcn@latest add "https://shadcnstudio.com/r/blocks/new-york-v4/${block.name}.json"`;
 
   return {
     name: block.name,
