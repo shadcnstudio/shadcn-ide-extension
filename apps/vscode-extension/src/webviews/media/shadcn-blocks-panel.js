@@ -10,7 +10,6 @@ let currentBlockName = null;
 let licenseData = { email: '', licenseKey: '' };
 let isInSectionDetails = false;
 let currentSectionItems = [];
-let CLIVersion = 'cli-v3';
 let themesInitialized = false; // Track if themes have been initialized
 
 // Tab switching function
@@ -191,19 +190,17 @@ function openBlock(path, name) {
   });
 }
 
-function copyInstallationCmd(command, CLIVersion) {
+function copyInstallationCmd(command) {
   vscode.postMessage({
     type: 'copyToClipboard',
     text: command,
-    cliVersion: CLIVersion,
   });
 }
 
-function installCmd(command, CLIVersion) {
+function installCmd(command) {
   vscode.postMessage({
     type: 'openTerminalandInstall',
     command,
-    cliVersion: CLIVersion,
   });
 }
 
@@ -600,13 +597,10 @@ document.addEventListener('DOMContentLoaded', () => {
         ? e.target
         : e.target.closest('.copy-cmd-btn');
       const itemName = btn.dataset.item;
-      console.log('Item name for installation command:', itemName, CLIVersion);
+      console.log('Item name for installation command:', itemName);
       if (itemName) {
-        const command =
-          CLIVersion === 'cli-v3'
-            ? `npx shadcn@latest add @ss-blocks/${itemName}`
-            : `npx shadcn@latest add "https://shadcnstudio.com/r/blocks/new-york-v4/${itemName}.json`;
-        copyInstallationCmd(command, CLIVersion);
+        const command = `npx shadcn@latest add @ss-blocks/${itemName}`;
+        copyInstallationCmd(command);
       }
     }
 
@@ -634,22 +628,11 @@ document.addEventListener('DOMContentLoaded', () => {
         : e.target.closest('.install-cmd-btn');
       const itemName = installBtn.dataset.item;
       if (itemName) {
-        const command =
-          CLIVersion === 'cli-v3'
-            ? `npx shadcn@latest add @ss-blocks/${itemName}`
-            : `npx shadcn@latest add "https://shadcnstudio.com/r/blocks/new-york-v4/${itemName}.json`;
-        installCmd(command, CLIVersion);
+        const command = `npx shadcn@latest add @ss-blocks/${itemName}`;
+        installCmd(command);
       }
     }
   });
-
-  // Event delegation for CLI version selector (handles dynamically created select)
-  const cliVersionSelector = document.getElementById('cliVersionSelector');
-  if (cliVersionSelector) {
-    cliVersionSelector.addEventListener('change', (e) => {
-      CLIVersion = e.target.value;
-    });
-  }
 
   // License section toggle
   const licenseHeader = document.querySelector('.license-header');

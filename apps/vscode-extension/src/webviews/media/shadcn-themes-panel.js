@@ -244,14 +244,10 @@ function applyTheme(themeId) {
   const theme = themesData.find((t) => t.name === themeId);
 
   if (theme) {
-    const themeInstallationCmd =
-      CLIVersion === 'cli-v3'
-        ? `npx shadcn@latest add @ss-themes/${theme.name}`
-        : `npx shadcn@latest add "https://shadcnstudio.com/r/themes/${theme.name}.json`;
+    const themeInstallationCmd = `npx shadcn@latest add @ss-themes/${theme.name}`;
     vscode.postMessage({
       type: 'openTerminalandInstall',
       command: themeInstallationCmd,
-      cliVersion: CLIVersion,
     });
   }
 }

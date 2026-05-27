@@ -61,7 +61,7 @@ export class ShadcnBlocksProvider implements vscode.WebviewViewProvider {
           await this._fetchSectionDetails(data.id, data.name);
           break;
         case 'copyToClipboard':
-          await this._copyInstallationCommand(data.text, data.cliVersion);
+          await this._copyInstallationCommand(data.text);
           vscode.window.showInformationMessage('📋 Copied to clipboard!');
           break;
         case 'openExternalUrl':
@@ -74,7 +74,7 @@ export class ShadcnBlocksProvider implements vscode.WebviewViewProvider {
           await this._saveLicenseData(data.data);
           break;
         case 'openTerminalandInstall':
-          await this._openTerminalandInstall(data.command, data.cliVersion);
+          await this._openTerminalandInstall(data.command);
           break;
         case 'fetchThemesData':
           await this._fetchThemesData();
@@ -181,21 +181,13 @@ export class ShadcnBlocksProvider implements vscode.WebviewViewProvider {
     }
   }
 
-  private async _openTerminalandInstall(command: string, cliVersion: string) {
+  private async _openTerminalandInstall(command: string) {
     try {
       // Always open a new terminal to avoid conflicts
       const terminal = vscode.window.createTerminal();
       terminal.show();
       if (terminal) {
-        const { email, licenseKey } = this._getUserConfig();
-
-        const commandToSend =
-          cliVersion === 'cli-v3'
-            ? command
-            : email && licenseKey
-              ? command + `?email=${email}&license_key=${licenseKey}"`
-              : command + `"`;
-        terminal.sendText(commandToSend, true);
+        terminal.sendText(command, true);
         vscode.window.showInformationMessage(
           'Terminal opened and command sent!',
         );
@@ -392,21 +384,8 @@ export class ShadcnBlocksProvider implements vscode.WebviewViewProvider {
     }
   }
 
-  private async _copyInstallationCommand(
-    command: string,
-    CLIVersion: string,
-  ): Promise<void> {
-    if (CLIVersion === 'cli-v3') {
-      const installationCommand = command;
-      await vscode.env.clipboard.writeText(installationCommand);
-    } else {
-      const { email, licenseKey } = this._getUserConfig();
-      const installationCommand =
-        email && licenseKey
-          ? command + `?email=${email}&license_key=${licenseKey}"`
-          : command + `"`;
-      await vscode.env.clipboard.writeText(installationCommand);
-    }
+  private async _copyInstallationCommand(command: string): Promise<void> {
+    await vscode.env.clipboard.writeText(command);
   }
 
   private async _getPlanDetails() {

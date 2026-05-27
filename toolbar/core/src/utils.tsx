@@ -5,7 +5,6 @@ import type {
 } from '@/hooks/use-chat-state';
 
 import type {
-  CliVersion,
   PromptAction,
   SelectedBlock,
   SelectedDoc,
@@ -499,15 +498,8 @@ export const getLicenseDataFromStorage = (): {
 
 export const getSelectedBlockInfo = (
   block: BlocksContextItem,
-  cliVersion: CliVersion,
 ): SelectedBlock => {
-  const { email, licenseKey } = getLicenseDataFromStorage();
-  const blockInstallationCmd =
-    cliVersion === 'v3'
-      ? `npx shadcn@latest add @ss-blocks/${block.name}`
-      : email && licenseKey
-        ? `npx shadcn@latest add "https://shadcnstudio.com/r/blocks/new-york-v4/${block.name}.json?email=${email}&license_key=${licenseKey}"`
-        : `npx shadcn@latest add "https://shadcnstudio.com/r/blocks/new-york-v4/${block.name}.json"`;
+  const blockInstallationCmd = `npx shadcn@latest add @ss-blocks/${block.name}`;
 
   return {
     name: block.name,
@@ -528,16 +520,8 @@ export const getSelectedBlockInfo = (
 
 export const getSelectedThemeInfo = (
   theme: ThemeContextItem,
-  cliVersion: CliVersion,
 ): SelectedTheme => {
-  const { email, licenseKey } = getLicenseDataFromStorage();
-
-  const themeInstallCommand =
-    cliVersion === 'v3'
-      ? `npx shadcn@latest add @ss-themes/${theme.name}`
-      : email && licenseKey
-        ? `npx shadcn@latest add "https://shadcnstudio.com/r/themes/${theme.name}.json?email=${email}&license_key=${licenseKey}"`
-        : `npx shadcn@latest add "https://shadcnstudio.com/r/themes/${theme.name}.json"`;
+  const themeInstallCommand = `npx shadcn@latest add @ss-themes/${theme.name}`;
 
   return {
     name: theme.name,
@@ -551,7 +535,6 @@ export const collectUserMessageMetadata = (
   selectedBlocks: SelectedBlock[] = [],
   selectedThemes: SelectedTheme[] = [],
   promptAction: PromptAction = 'both',
-  cliVersion: CliVersion = 'v3',
 ): UserMessageMetadata => {
   const iframeWindow = getIFrameWindow();
   return {
@@ -566,7 +549,6 @@ export const collectUserMessageMetadata = (
     selectedBlocks,
     selectedThemes,
     promptAction,
-    cliVersion,
     viewportResolution: {
       width: iframeWindow?.innerWidth,
       height: iframeWindow?.innerHeight,
