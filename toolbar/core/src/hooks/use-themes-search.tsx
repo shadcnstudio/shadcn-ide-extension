@@ -43,7 +43,10 @@ const fetchGenericThemesFromAPI = async () => {
     }
     const data = await response.json();
 
-    return data.items as ThemeItem[];
+    return (data.items as ThemeItem[]).map((theme) => ({
+      ...theme,
+      type: 'generic',
+    }));
   } catch (error) {
     console.warn('Error fetching themes:', error);
     return [];
@@ -70,7 +73,7 @@ const checkPlan = async (): Promise<'pro' | 'basic'> => {
 
 const fetchUserThemesFromAPI = async () => {
   const { email, licenseKey } = getLicenseDataFromStorage();
-  const fetchThemesUrl = `https://shadcnstudio.com/api/user-themes?email=${email}&license_key=${licenseKey}&is_extension=true`;
+  const fetchThemesUrl = `https://shadcnstudio.com/api/ide-extension/user-themes?email=${email}&license_key=${licenseKey}&is_extension=true`;
   try {
     const response = await fetch(fetchThemesUrl, { method: 'GET' });
     if (!response.ok) {
@@ -81,7 +84,10 @@ const fetchUserThemesFromAPI = async () => {
     }
     const data = await response.json();
 
-    return data.themes as ThemeItem[];
+    return (data.themes as ThemeItem[]).map((theme) => ({
+      ...theme,
+      type: 'user',
+    }));
   } catch (error) {
     console.warn('Error fetching themes:', error);
     return [];

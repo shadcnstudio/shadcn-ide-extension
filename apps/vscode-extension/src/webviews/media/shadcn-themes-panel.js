@@ -125,15 +125,9 @@ function renderThemes() {
 
   let filteredThemes = themesData;
 
-  console.log(
-    'Rendering themes with search query:',
-    themesSearchQuery,
-    themesFuse,
-  );
   // Apply fuzzy search using Fuse.js
   if (themesSearchQuery && themesFuse) {
     const results = themesFuse.search(themesSearchQuery);
-    console.log('Fuse search results:', results);
     filteredThemes = results.map((result) => result.item);
   }
 
@@ -244,7 +238,13 @@ function applyTheme(themeId) {
   const theme = themesData.find((t) => t.name === themeId);
 
   if (theme) {
-    const themeInstallationCmd = `npx shadcn@latest add @ss-themes/${theme.name}`;
+    const isUserTheme = theme.type === 'user';
+    const themeInstallationCmd = isUserTheme
+      ? theme.email && theme.licenseKey
+        ? `npx shadcn@latest apply "https://shadcnstudio.com/r/themes/${theme.name}.json?email=${theme.email}&license_key=${theme.licenseKey}"`
+        : `npx shadcn@latest apply "https://shadcnstudio.com/r/themes/${theme.name}.json"`
+      : `npx shadcn@latest apply "https://shadcnstudio.com/r/themes/${theme.name}.json"`;
+
     vscode.postMessage({
       type: 'openTerminalandInstall',
       command: themeInstallationCmd,
@@ -279,9 +279,6 @@ function initializeThemes() {
     }
   });
 
-  console.log(
-    'Fetching themes data at the end of initializeThemes function...',
-  );
   // Fetch themes data on init
   fetchThemesData();
 }
@@ -302,7 +299,6 @@ window.addEventListener('message', (event) => {
         showThemesErrorState(message.error);
       } else if (message.data && message.data.length > 0) {
         themesData = message.data;
-        console.log('Received themes data:', themesData);
         initializeThemesFuse(themesData);
         renderThemes();
         showThemesGrid();

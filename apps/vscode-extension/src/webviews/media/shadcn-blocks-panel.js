@@ -597,7 +597,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ? e.target
         : e.target.closest('.copy-cmd-btn');
       const itemName = btn.dataset.item;
-      console.log('Item name for installation command:', itemName);
+      
       if (itemName) {
         const command = `npx shadcn@latest add @ss-blocks/${itemName}`;
         copyInstallationCmd(command);

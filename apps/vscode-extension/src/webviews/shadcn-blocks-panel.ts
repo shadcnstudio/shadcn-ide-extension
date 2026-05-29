@@ -222,7 +222,6 @@ export class ShadcnBlocksProvider implements vscode.WebviewViewProvider {
       if (!response.ok) {
         throw new Error(responseData.message);
       } else {
-        console.log('License validated:', responseData);
         return {
           isValid: true,
           message: responseData.message,
@@ -255,7 +254,6 @@ export class ShadcnBlocksProvider implements vscode.WebviewViewProvider {
       }
 
       const shadcnThemesData = await response.json();
-      console.log('Generic themes data:', shadcnThemesData);
 
       const shadcnThemesDataItems = (
         shadcnThemesData as { items: any[]; name: string }
@@ -278,7 +276,6 @@ export class ShadcnBlocksProvider implements vscode.WebviewViewProvider {
       const { email, licenseKey } = this._getUserConfig();
 
       const themesUrl = `https://shadcnstudio.com/api/ide-extension/user-themes?email=${email}&license_key=${licenseKey}&is_extension=true`;
-      console.log('Fetching user themes from URL:', themesUrl);
       // Fetch shadcn themes from the shadcn studio registry
       const response = await fetch(themesUrl, {
         method: 'GET',
@@ -302,6 +299,8 @@ export class ShadcnBlocksProvider implements vscode.WebviewViewProvider {
         return {
           ...item,
           type: 'user',
+          email,
+          licenseKey,
         };
       });
 

@@ -521,7 +521,13 @@ export const getSelectedBlockInfo = (
 export const getSelectedThemeInfo = (
   theme: ThemeContextItem,
 ): SelectedTheme => {
-  const themeInstallCommand = `npx shadcn@latest add @ss-themes/${theme.name}`;
+  const { email, licenseKey } = getLicenseDataFromStorage();
+  const isUserTheme = theme.type === 'user';
+  const themeInstallCommand = isUserTheme
+    ? email && licenseKey
+      ? `npx shadcn@latest apply "https://shadcnstudio.com/r/themes/${theme.name}.json?email=${email}&license_key=${licenseKey}"`
+      : `npx shadcn@latest apply "https://shadcnstudio.com/r/themes/${theme.name}.json"`
+    : `npx shadcn@latest apply "https://shadcnstudio.com/r/themes/${theme.name}.json"`;
 
   return {
     name: theme.name,
