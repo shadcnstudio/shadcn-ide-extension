@@ -1,5 +1,9 @@
 # Shadcn/studio IDE Extension
 
+## 1.1.1
+
+- Updated the Shadcn Studio pricing URL
+
 ## 1.1.0
 
 - Added support for Radix UI and Base UI.

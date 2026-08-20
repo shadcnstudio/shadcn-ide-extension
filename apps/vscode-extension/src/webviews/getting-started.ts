@@ -63,7 +63,7 @@ function getWebviewContent(
       ? 'http://localhost:3000'
       : 'https://shadcnstudio.com';
 
-  const proUrl = 'https://shadcnstudio.com#pricing';
+  const proUrl = 'https://shadcnstudio.com/pricing';
 
   // Get path to media directory
   const mediaPath = vscode.Uri.joinPath(

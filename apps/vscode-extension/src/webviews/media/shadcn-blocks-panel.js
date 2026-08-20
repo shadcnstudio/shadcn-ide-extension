@@ -89,7 +89,7 @@ function updateLicenseStatus(isActive) {
     licenseStatus.style.display = 'none';
   } else {
     statusText.innerHTML =
-      '<p>No license found. <a href="https://shadcnstudio.com#pricing" target="_blank">Upgrade to Pro</a> for premium resources, if already upgraded, Add your <a href="https://shadcnstudio.com/billing" target="_blank">Credentials</a> below.</p>';
+      '<p>No license found. <a href="https://shadcnstudio.com/pricing" target="_blank">Upgrade to Pro</a> for premium resources, if already upgraded, Add your <a href="https://shadcnstudio.com/billing" target="_blank">Credentials</a> below.</p>';
   }
 }
 
@@ -709,7 +709,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (getLicenseLink) {
     getLicenseLink.addEventListener('click', (e) => {
       e.preventDefault();
-      openExternalUrl('https://shadcnstudio.com#pricing');
+      openExternalUrl('https://shadcnstudio.com/pricing');
     });
   }
 

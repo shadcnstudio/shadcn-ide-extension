@@ -211,7 +211,7 @@ export function LicenseKeyManager() {
                 size="sm"
                 onClick={() => {
                   // Open upgrade URL or show upgrade dialog
-                  window.open('https://shadcnstudio.com/#pricing', '_blank');
+                  window.open('https://shadcnstudio.com/pricing', '_blank');
                 }}
                 className="flex-1 text-xs"
               >
